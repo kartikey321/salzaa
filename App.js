@@ -1,21 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { firebase } from "@firebase/app";
+import { firebaseConfig } from "./src/config/firebase";
+import { initializeApp } from "firebase/app";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { DrawerContent } from "./src/components/DrawerContent";
 
-export default function App() {
+import AuthStack from "./src/navigation/AuthStack";
+import AboutScreen from "./src/screens/AboutScreen";
+import FaqScreen from "./src/screens/FaqScreen";
+const Drawer = createDrawerNavigator();
+
+// Initialize Firebase
+if (firebase.apps.length == 0) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator drawerContent={(props) => <DrawerContent />}>
+        <Drawer.Screen
+          name="HomeStack"
+          component={AuthStack}
+          options={{ header: () => null }}
+        />
+        <Drawer.Screen
+          name="About"
+          component={AboutScreen}
+          options={{ header: () => null }}
+        />
+        <Drawer.Screen
+          name="FAQ"
+          component={FaqScreen}
+          options={{ header: () => null }}
+        />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

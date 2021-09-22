@@ -9,33 +9,41 @@ import { DrawerContent } from "./src/components/DrawerContent";
 import AuthStack from "./src/navigation/AuthStack";
 import AboutScreen from "./src/screens/AboutScreen";
 import FaqScreen from "./src/screens/FaqScreen";
-const Drawer = createDrawerNavigator();
+import TabStack from "./src/navigation/TabStack";
 
 // Initialize Firebase
 if (firebase.apps.length == 0) {
   firebase.initializeApp(firebaseConfig);
 }
 
+const DrawerStack = () => {
+  const Drawer = createDrawerNavigator();
+
+  return (
+    <Drawer.Navigator drawerContent={(props) => <DrawerContent />}>
+      <Drawer.Screen
+        name="HomeStack"
+        component={AuthStack}
+        options={{ header: () => null }}
+      />
+      <Drawer.Screen
+        name="About"
+        component={AboutScreen}
+        options={{ header: () => null }}
+      />
+      <Drawer.Screen
+        name="FAQ"
+        component={FaqScreen}
+        options={{ header: () => null }}
+      />
+    </Drawer.Navigator>
+  );
+};
+
 function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator drawerContent={(props) => <DrawerContent />}>
-        <Drawer.Screen
-          name="HomeStack"
-          component={AuthStack}
-          options={{ header: () => null }}
-        />
-        <Drawer.Screen
-          name="About"
-          component={AboutScreen}
-          options={{ header: () => null }}
-        />
-        <Drawer.Screen
-          name="FAQ"
-          component={FaqScreen}
-          options={{ header: () => null }}
-        />
-      </Drawer.Navigator>
+      <AuthStack />
     </NavigationContainer>
   );
 }

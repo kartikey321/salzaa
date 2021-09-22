@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import FormInput from "../components/InputFields";
 import { registration, signIn } from "../HelperMethods/AuthHelper";
 import GlobalStyles from "../styles/GlobalStyles";
 import { windowWidth } from "../utils/Dimensions";
@@ -18,50 +19,49 @@ const SignupScreen = ({ navigation }) => {
     <View style={GlobalStyles.container}>
       <Text style={GlobalStyles.headText}>Signup</Text>
       <View style={{ marginTop: 30 }}>
-        <Text>Enter your name</Text>
-        <TextInput
-          value={name}
+        <Text style={styles.text}>Enter your name</Text>
+        <FormInput
+          labelValue={name}
+          onChangeText={(text) => setName(text)}
+          placeholderText="name"
+          iconType="user-alt"
           keyboardType="name-phone-pad"
-          textAlign="center"
-          onChangeText={(text) => {
-            setName(text);
-          }}
-          style={styles.textInputst}
+          autoCorrect={false}
         />
+
         <View style={{ height: 20 }}></View>
 
-        <Text>Enter your phone</Text>
-        <TextInput
-          value={phone}
+        <Text style={styles.text}>Enter your phone</Text>
+        <FormInput
+          labelValue={phone}
+          onChangeText={(text) => setPhone(text)}
+          placeholderText="phone number"
+          iconType="phone-alt"
           keyboardType="phone-pad"
-          textAlign="center"
-          onChangeText={(text) => {
-            setPhone(text);
-          }}
-          style={styles.textInputst}
+          autoCorrect={false}
         />
+
         <View style={{ height: 20 }}></View>
 
-        <Text>Enter your e-mail</Text>
-        <TextInput
-          value={email}
+        <Text style={styles.text}>Enter your e-mail</Text>
+        <FormInput
+          labelValue={email}
+          onChangeText={(text) => setEmail(text)}
+          placeholderText="email"
+          iconType="user-tie"
           keyboardType="email-address"
-          textAlign="center"
-          onChangeText={(text) => {
-            setEmail(text);
-          }}
-          style={styles.textInputst}
+          autoCorrect={false}
         />
+
         <View style={{ height: 20 }}></View>
-        <Text>Enter your password</Text>
-        <TextInput
-          value={password}
+        <Text style={styles.text}>Enter your password</Text>
+        <FormInput
+          labelValue={password}
+          onChangeText={(text) => setPassword(text)}
+          placeholderText="password"
           secureTextEntry={true}
-          textAlign="center"
-          onChangeText={(text) => {
-            setPassword(text);
-          }}
-          style={styles.textInputst}
+          iconType="key"
+          autoCorrect={false}
         />
       </View>
       <View style={{ height: 20 }}></View>
@@ -99,5 +99,9 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: "black",
     borderWidth: 0.7,
+  },
+  text: {
+    fontSize: 16,
+    textAlign: "center",
   },
 });

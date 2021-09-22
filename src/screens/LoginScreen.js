@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import FormInput from "../components/InputFields";
 import { registration } from "../HelperMethods/AuthHelper";
 import GlobalStyles from "../styles/GlobalStyles";
 import { windowWidth } from "../utils/Dimensions";
@@ -18,26 +19,25 @@ const LoginScreen = ({ navigation }) => {
     <View style={GlobalStyles.container}>
       <Text style={GlobalStyles.headText}>Login</Text>
       <View style={{ marginTop: 30 }}>
-        <Text>Enter your e-mail</Text>
-        <TextInput
-          value={email}
+        <Text style={styles.text}>Enter your e-mail</Text>
+        <FormInput
+          labelValue={email}
+          onChangeText={(text) => setEmail(text)}
+          placeholderText="email"
+          iconType="user-tie"
           keyboardType="email-address"
-          textAlign="center"
-          onChangeText={(text) => {
-            setEmail(text);
-          }}
-          style={styles.textInputst}
+          autoCorrect={false}
         />
+
         <View style={{ height: 20 }}></View>
-        <Text>Enter your password</Text>
-        <TextInput
-          value={password}
-          textAlign="center"
+        <Text style={styles.text}>Enter your password</Text>
+        <FormInput
+          labelValue={password}
+          onChangeText={(text) => setPassword(text)}
+          placeholderText="password"
           secureTextEntry={true}
-          onChangeText={(text) => {
-            setPassword(text);
-          }}
-          style={styles.textInputst}
+          iconType="key"
+          autoCorrect={false}
         />
       </View>
       <View style={{ height: 20 }}></View>

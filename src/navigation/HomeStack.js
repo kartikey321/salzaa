@@ -7,29 +7,14 @@ import HomeScreen from "../screens/HomeScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import OnboardingScreen from "../screens/OnBoardingScreen";
 import TabStack from "./TabStack";
-const AuthStack = ({ navigation }) => {
-  const Stack = createNativeStackNavigator();
+const HomeStack = ({ navigation }) => {
+  const Stack1 = createNativeStackNavigator();
 
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Onboarding"
-        component={OnboardingScreen}
-        options={{ header: () => null }}
-      />
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{ header: () => null }}
-      />
-      <Stack.Screen
-        name="Signup"
-        component={SignupScreen}
-        options={{ header: () => null }}
-      />
-      <Stack.Screen
+    <Stack1.Navigator>
+      <Stack1.Screen
         name="Home"
-        component={TabStack}
+        component={HomeScreen}
         options={{ header: () => null }}
         // options={
         // {
@@ -48,10 +33,10 @@ const AuthStack = ({ navigation }) => {
         // }
         // }
       />
-    </Stack.Navigator>
+    </Stack1.Navigator>
   );
 };
 
-export default AuthStack;
+export default HomeStack;
 
 const styles = StyleSheet.create({});
